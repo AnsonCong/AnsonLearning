@@ -1,0 +1,1 @@
+This is a RedisUtils class, which including some common method about redis.
