@@ -4,7 +4,6 @@ import com.demo.config.PersonConfig;
 import com.demo.domain.Person;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author Anson
