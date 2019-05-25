@@ -10,11 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @author Anson
  * @date 2019/5/24
  */
-@ComponentScan("com.demo.*")
 public class AnnotationMain {
 
     public static void main (String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(PersonConfig.class);
-        Person person = (Person)context.getBean("getPerson");
+        Person person = (Person)context.getBean("person");
     }
 }
