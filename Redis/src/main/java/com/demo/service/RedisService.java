@@ -45,40 +45,12 @@ public class RedisService {
         String workingDir = BeanUtility.getWorkingDirectory();
         log.info("Working Directory >>> {}", workingDir);
         File file = new File(workingDir + "/redis-config.json");
-        InputStream is;
         if (file.exists()) {
             try {
                 config = Config.fromJSON(file);
             } catch (Exception e) {
                 throw new RedisException("An exception occurred while parsing redis-config.json.", e);
             }
-        } else if ((is = getClass().getClassLoader().getResourceAsStream("redis-config.json")) != null) {
-            //init with SingleServer
-            log.warn("|--------------WARNING: redis-config.json not found. --------------|");
-            try {
-                config = Config.fromJSON(is);
-            } catch (Exception e) {
-                throw new RedisException("An exception occurred while parsing redis-config.json.", e);
-            }
-            try {
-                Method method = config.getClass().getDeclaredMethod("getSingleServerConfig");
-                method.setAccessible(true);
-                SingleServerConfig ssConfig = (SingleServerConfig) method.invoke(config);
-                if (ssConfig != null) {
-                    log.warn("|  WARNING: RedisService running in single node mode.  |");
-                    ResourceBundle rb = ResourceBundle.getBundle("application");
-                    String url = rb.getString("redis.single.addr");
-                    if (StringUtils.isNotBlank(url)) {
-                        ssConfig.setAddress(url);
-                    }
-                }
-            } catch (MissingResourceException e) {
-                // nothing
-            } catch (Exception e) {
-                log.warn("Exception occurred while checking redis-config: ", e);
-            }
-            log.warn("|                                                      |");
-            log.warn("========================================================");
         } else {
             throw new RedisException("Missing in classpath: redis-config.json.");
         }
