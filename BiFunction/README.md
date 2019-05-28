@@ -1,0 +1,1 @@
+This is a demo for using Java 8 BiFunction to build the exception handle system.
