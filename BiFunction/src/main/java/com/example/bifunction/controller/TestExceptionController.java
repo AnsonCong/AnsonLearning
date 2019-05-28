@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.function.BiFunction;
 
@@ -15,6 +16,7 @@ import java.util.function.BiFunction;
  * @author Anson
  * @date 2019/5/28
  */
+@RestController
 public class TestExceptionController {
 
     private String correlationId = "1231231231";

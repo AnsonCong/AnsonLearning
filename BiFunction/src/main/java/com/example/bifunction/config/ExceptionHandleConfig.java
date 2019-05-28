@@ -20,7 +20,6 @@ import java.util.function.BiFunction;
 public class ExceptionHandleConfig {
 
     @Bean("TimeOutResponseFunction")
-    @Profile("timeout")
     public BiFunction<NegativeExceptionParamHolder, RestErrorResponseBuilder, ResponseEntity> handleTimeOut() {
         return new BiFunction<NegativeExceptionParamHolder, RestErrorResponseBuilder, ResponseEntity>() {
             @Override
